@@ -1,10 +1,10 @@
-ja: 
-  activerecord: 
-    models: 
-      product: "製品"  #g
+ja:
+  activerecord:
+    models:
+      product: "商品"  #g
 
-    attributes: 
-      product: 
+    attributes:
+      product:
         title: "タイトル"  #g
         description: "説明"  #g
         image_url: "画像のURL"  #g
