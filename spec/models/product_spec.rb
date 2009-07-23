@@ -5,7 +5,7 @@ describe Product do
     @valid_attributes = {
       :title => "value for title",
       :description => "value for description",
-      :image_url => "value for image_url",
+      :image_url => "value for image_url.jpg",
       :price => 1
     }
   end
