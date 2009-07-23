@@ -22,9 +22,8 @@ describe "/products/index.html.erb" do
 
   it "renders a list of products" do
     render
-    response.should have_tag("tr>td", "value for title".to_s, 2)
-    response.should have_tag("tr>td", "value for description".to_s, 2)
-    response.should have_tag("tr>td", "value for image_url".to_s, 2)
-    response.should have_tag("tr>td", 1.to_s, 2)
+    response.should have_tag("span.list-title", "value for title".to_s, 2)
+    response.should have_tag("td>p", "value for description".to_s, 2)
+    response.should have_tag("img.list-image[src=?]", "value for image_url", 2)
   end
 end

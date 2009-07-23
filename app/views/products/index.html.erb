@@ -1,26 +1,26 @@
-<h1><%= translate(:listing, :default => "Listing {{model}}", :model => Product.human_name(:count => @products.size), :count => @products.size, :scope => [:railties, :scaffold]) %></h1>
+<div id="product-list">
+  <h1><%= translate(:listing, :default => "{{model}}一覧", :model => Product.human_name(:count => @products.size), :count => @products.size, :scope => [:railties, :scaffold]) %></h1>
 
-<table>
-  <tr>
-    <th><%= Product.human_attribute_name('title') %></th>
-    <th><%= Product.human_attribute_name('description') %></th>
-    <th><%= Product.human_attribute_name('image_url') %></th>
-    <th><%= Product.human_attribute_name('price') %></th>
-  </tr>
-
-<% for product in @products %>
-  <tr>
-    <td><%=h product.title %></td>
-    <td><%=h product.description %></td>
-    <td><%=h product.image_url %></td>
-    <td><%=h product.price %></td>
-    <td><%= link_to translate(:show, :default => 'Show', :scope => [:railties, :scaffold]), product %></td>
-    <td><%= link_to translate(:edit, :default => 'Edit', :scope => [:railties, :scaffold]), edit_product_path(product) %></td>
-    <td><%= link_to translate(:destroy, :default => 'Destroy', :scope => [:railties, :scaffold]), product, :confirm => translate(:confirmation, :default => 'Are you sure?', :scope => [:railties, :scaffold]), :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <table cellpadding="5" cellspacing="0">
+    <% for product in @products %>
+      <tr valign="top" class="<%= cycle('list-line-odd', 'list-line-even') %>">
+        <td>
+          <img class="list-image" src="<%= product.image_url %>"/>
+        </td>
+        <td width="60%">
+          <span class="list-title"><%=h product.title %></span><br />
+          <p><%=h truncate(product.description, :length => 80, :omission => "...") %></p>
+        </td>
+        <td class="list-actions">
+          <%= link_to translate(:show, :default => '表示', :scope => [:railties, :scaffold]), product %><br />
+          <%= link_to translate(:edit, :default => '編集', :scope => [:railties, :scaffold]), edit_product_path(product) %><br />
+          <%= link_to translate(:destroy, :default => '破棄', :scope => [:railties, :scaffold]), product, :confirm => translate(:confirmation, :default => 'Are you sure?', :scope => [:railties, :scaffold]), :method => :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
 <br />
 
-<%= link_to translate(:new, :default => "New {{model}}", :model => Product.human_name, :scope => [:railties, :scaffold]), new_product_path %>
+<%= link_to translate(:new, :default => "新しい{{model}}", :model => Product.human_name, :scope => [:railties, :scaffold]), new_product_path %>
