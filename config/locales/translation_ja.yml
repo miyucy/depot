@@ -1,0 +1,12 @@
+ja: 
+  activerecord: 
+    models: 
+      product: "製品"  #g
+
+    attributes: 
+      product: 
+        title: "タイトル"  #g
+        description: "説明"  #g
+        image_url: "画像のURL"  #g
+        price: "販売価格"  #g
+

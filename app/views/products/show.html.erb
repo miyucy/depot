@@ -1,23 +1,23 @@
 <p>
-  <b>Title:</b>
+  <b><%= Product.human_attribute_name('title') %>:</b>
   <%=h @product.title %>
 </p>
 
 <p>
-  <b>Description:</b>
+  <b><%= Product.human_attribute_name('description') %>:</b>
   <%=h @product.description %>
 </p>
 
 <p>
-  <b>Image url:</b>
+  <b><%= Product.human_attribute_name('image_url') %>:</b>
   <%=h @product.image_url %>
 </p>
 
 <p>
-  <b>Price:</b>
+  <b><%= Product.human_attribute_name('price') %>:</b>
   <%=h @product.price %>
 </p>
 
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to translate(:edit, :default => 'Edit', :scope => [:railties, :scaffold]), edit_product_path(@product) %> |
+<%= link_to translate(:back, :default => 'Back', :scope => [:railties, :scaffold]), products_path %>

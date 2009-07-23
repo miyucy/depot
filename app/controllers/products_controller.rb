@@ -2,34 +2,19 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index
-    @products = Product.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @products }
-    end
+    @products = Product.find(:all)
   end
 
   # GET /products/1
   # GET /products/1.xml
   def show
     @product = Product.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @product }
-    end
   end
 
   # GET /products/new
   # GET /products/new.xml
   def new
     @product = Product.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @product }
-    end
   end
 
   # GET /products/1/edit
@@ -42,15 +27,11 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
 
-    respond_to do |format|
-      if @product.save
-        flash[:notice] = 'Product was successfully created.'
-        format.html { redirect_to(@product) }
-        format.xml  { render :xml => @product, :status => :created, :location => @product }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
-      end
+    if @product.save
+      flash[:notice] = I18n.t(:created_success, :default => '{{model}} was successfully created.', :model => Product.human_name, :scope => [:railties, :scaffold])
+      redirect_to(@product)
+    else
+      render :action => "new"
     end
   end
 
@@ -59,15 +40,11 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
 
-    respond_to do |format|
-      if @product.update_attributes(params[:product])
-        flash[:notice] = 'Product was successfully updated.'
-        format.html { redirect_to(@product) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
-      end
+    if @product.update_attributes(params[:product])
+      flash[:notice] = I18n.t(:updated_success, :default => '{{model}} was successfully updated.', :model => Product.human_name, :scope => [:railties, :scaffold])
+      redirect_to(@product)
+    else
+      render :action => "edit"
     end
   end
 
@@ -77,9 +54,6 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(products_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(products_url)
   end
 end

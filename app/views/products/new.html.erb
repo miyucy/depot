@@ -1,4 +1,4 @@
-<h1>New product</h1>
+<h1><%= translate(:new, :default => "New {{model}}", :model => Product.human_name, :scope => [:railties, :scaffold]) %></h1>
 
 <% form_for(@product) do |f| %>
   <%= f.error_messages %>
@@ -20,8 +20,8 @@
     <%= f.text_field :price %>
   </p>
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit translate(:create, :default => "Create", :scope => [:railties, :scaffold]) %>
   </p>
 <% end %>
 
-<%= link_to 'Back', products_path %>
+<%= link_to translate(:back, :default => 'Back', :scope => [:railties, :scaffold]), products_path %>
